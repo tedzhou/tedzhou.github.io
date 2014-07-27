@@ -4,14 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>tap | dǎ-jiàng-yóu</title>
+    <title>设置&quot;Perform Single-Object Prelink“导致编译失败 | dǎ-jiàng-yóu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="tedzhou">
     
-    <meta name="description" content="开发touch遇到的坑之一:android下浏览器tap无反应
-第一次发touch版本就遇到各种问题，这是第一个问题：android 2。3的机器上， a标签上delegate了个tap事件，点击后a标签高亮了，却有时候没有触发tap。
-遇到这个问题的时候我第一反应就是要换个底层库，因为我们用的是自">
+    <meta name="description" content="Verify final result code for completed build operation
+前段时间我在做一个代码重构的项目中发现一个Xcode奇怪的bug，我们往静态库里面加入了2000多个Objcetive C的class（工具生成），每个class一对.h.m文件，编译时XC">
     
     
     
@@ -67,15 +66,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2012/12/22/tap/" title="tap" itemprop="url">tap</a>
+      <a href="/2014/07/27/perform_single_object_prelink_cause_build_fail/" title="设置&quot;Perform Single-Object Prelink“导致编译失败" itemprop="url">设置&quot;Perform Single-Object Prelink“导致编译失败</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://tedzhou.github.io" title="tedzhou">tedzhou</a>
     </p>
   <p class="article-time">
-    <time datetime="2012-12-22T07:11:00.000Z" itemprop="datePublished">Dec 22 2012</time>
-    Updated:<time datetime="2014-04-16T06:32:27.000Z" itemprop="dateModified">Apr 16 2014</time>
+    <time datetime="2014-07-27T04:25:47.000Z" itemprop="datePublished">Jul 27 2014</time>
+    Updated:<time datetime="2014-07-27T05:39:47.000Z" itemprop="dateModified">Jul 27 2014</time>
     
   </p>
 </header>
@@ -84,49 +83,50 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#开发touch遇到的坑之一:android下浏览器tap无反应"><span class="toc-number">1.</span> <span class="toc-text">开发touch遇到的坑之一:android下浏览器tap无反应</span></a></li><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">1.1.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#<a_href="><span class="toc-number">1.2.</span> <span class="toc-text">Demo</a></span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Verify_final_result_code_for_completed_build_operation"><span class="toc-number">1.</span> <span class="toc-text">Verify final result code for completed build operation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#“Perform_Single-Object_Prelink”_干嘛用的"><span class="toc-number">2.</span> <span class="toc-text">“Perform Single-Object Prelink” 干嘛用的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#categories_in_static_library"><span class="toc-number">3.</span> <span class="toc-text">categories in static library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包大小"><span class="toc-number">4.</span> <span class="toc-text">包大小</span></a></li></ol>
 		</div>
 		
-		<h1 id="开发touch遇到的坑之一:android下浏览器tap无反应">开发touch遇到的坑之一:android下浏览器tap无反应</h1>
-<p>第一次发touch版本就遇到各种问题，这是第一个问题：android 2。3的机器上， <code>a标签</code>上<code>delegate</code>了个<code>tap</code>事件，点击后<code>a标签</code>高亮了，却<em>有时候</em>没有触发<code>tap</code>。</p>
-<p>遇到这个问题的时候我第一反应就是要换个底层库，因为我们用的是自己写的库，明显是最让人不放心的。但问题是换了<code>zetpo</code>之后还是没有解决这个问题，这时候就有点凌乱了。因为要赶着上活动，接着就各种风声鹤唳地想办法，最后也不知道是怎么定下来的:</p>
-<pre><code>用<span class="escape">`t</span>ouchstart<span class="escape">`事</span>件代替<span class="escape">`t</span>ap<span class="escape">`，</span>然后把字体改大些就稍微好点了，*多数情况*下点击<span class="escape">`a</span>标签<span class="escape">`都</span>会有响应了。
-</code></pre><p>虽然版本发了，但是<code>touchstart</code>事件带来其他副作用，例如太容易误操作了。所以还是要研究个彻底。</p>
-<hr>
-<h2 id="结论">结论</h2>
-<p>考虑到这些研究比较白痴，无非就是一些排列组合，所以直接给出结论:</p>
+		<h2 id="Verify_final_result_code_for_completed_build_operation">Verify final result code for completed build operation</h2>
+<p>前段时间我在做一个代码重构的项目中发现一个Xcode奇怪的bug，我们往静态库里面加入了2000多个Objcetive C的class（工具生成），每个class一对.h.m文件，编译时XCode报错:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>Verify final <span class="built_in">result</span> code <span class="keyword">for</span> completed build operation
+
+Build operation failed <span class="keyword">without</span> specifying <span class="keyword">any</span> errors. Individual build tasks may have failed <span class="keyword">for</span> unknown reasons. Some <span class="operator">of</span> these (up <span class="built_in">to</span> <span class="number">12</span>) may be listed below.
+</pre></td></tr></table></figure>
+
+<p>当时定位出可能和文件数量有关，减少文件数量后错误解决。但我自己的新建了个工程，文件比这个工程多也没有问题，想必还有其他因素导致的。</p>
+<p>我考虑了很多可能引起问题的因素，包括依赖太复杂，可能分析dependences的时候文件多爆了栈，也怀疑是某些编译选项导致的。最后才定位出是在<code>Perform Single-Object Prelink</code> 设为yes的时候，文件不能过多。</p>
+<h2 id="“Perform_Single-Object_Prelink”_干嘛用的">“Perform Single-Object Prelink” 干嘛用的</h2>
+<p>去查这个选项干嘛用的过程中还是有不少收获的。要解释这个选项要从Objective-C的一个坑爹bug开始讲起。</p>
+<h2 id="categories_in_static_library">categories in static library</h2>
+<p>xcode编译的时候不会把静态库里面全部的类都加载进去，它会找主工程用到了哪些符号，然后把用到的加载进去。但是这个看起来很美的机制有个大坑，就是oc的分类是不生成符号的，也就是说，比如你在工程用了一个分类的方法<code>[NSString categoryMethod]</code>, 编译器只会认为需要用到<code>NSString</code>, 而不知道<code>categoryMethod</code>是静态库里一个分类的方法，所以不会去加载静态库的分类。</p>
+<p>目前的解决方法就是给编译器一个标志，告诉编译器整个静态库都要加载:</p>
 <ol>
-<li>可点击区域小的时候， <code>touch</code> 不一定会触发， 但<code>click</code> 一定会触发， <code>href</code> 也会触发。(a标签高亮了是因为href)。</li>
-<li>事件触发顺序是<code>touch</code> -&gt; <code>click</code> -&gt;<code>href</code></li>
-<li>“命中率”来说， <code>href</code>==<code>click</code> &gt; <code>touchstart</code> &gt; <code>&quot;tap&quot;</code></li>
+<li><code>-all-load</code>. 把所有静态库里的所有.o都加载</li>
+<li><code>-force_load</code>. 可以指定加载哪个静态库的所有.o</li>
+<li><code>-ObjC</code>. 把所有OC代码都加载。</li>
+<li><code>Perform Single-Object Prelink</code>. 前3个编译选项都是设在主工程的，这个选项是设置在静态库的。表示把这个子工程预编译成一个.o文件，当整个静态库有一个符号被引用就把整个.o文件打包进去。</li>
 </ol>
-<p><em>虽然tap在android 2。3下命中比较低， 但由于tap还是会比click响应要快， 所以多数情况下还是采用增大可点击区域使用tap事件会更好。</em></p>
-<hr>
-<h2 id="<a_href="http://tedzhou-github-com/demo/tap-html" target="_blank">Demo</a>"><a href="http://tedzhou.github.com/demo/tap.html" target="_blank">Demo</a></h2>
-<ol>
-<li>第一部分测试字体大小delegate <code>tap/touchstart</code> 和<code>href</code> 的命中率， 结论是字体小的<code>tap</code> 命中率非常低， <code>href</code>全命中。 换用<code>touchstart</code> ， <code>touchstart</code> 的成功率比<code>tap</code> 的高， 但也比<code>href</code> 要低，不是全中。</li>
-<li>第二部分测试<code>href</code> 对delegate <code>tap/touchstart</code> 命中有没有影响， 结论<code>tap</code> 和<code>touchstart</code> 还是命中率非常低。</li>
-<li>第三部分测试加上<code>padding</code> 后增大可点击区域命中率有无提升，结论是有的。</li>
-<li>第四部分测试不用delegate， <code>touchstart</code> 和<code>href</code> 的命中率， 结论是和第一部分测试没啥区别。</li>
-<li>第五部分测试<code>onclick</code> 和<code>href</code> 的命中率， 结论是两者都是全中的。</li>
-<li>第六部分测试<code>onclick</code> 和<code>touchstart</code> 的命中率， 结论是<code>onclick</code> 还是全中， <code>touchstart</code> 字体小的还是比较低。</li>
-<li>注意的是， 以上六个测试都符合事件触发顺序是touch-&gt;click-&gt;href。</li>
-</ol>
+<p>可能是<code>Perform Single-Object Prelink</code>的实现有bug，文件多了就挂了。</p>
+<h2 id="包大小">包大小</h2>
+<p>可能我们公司是整个互联网最关心安装包大小的公司了，明显以上的所有方法都是会增加包大小的。我接下来要做的事情就是把那2000多个类没用的代码干掉。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/xcode/">xcode</a>
+  </div>
 
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/mobile， hole/">mobile， hole</a>
-</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://tedzhou.github.io/2012/12/22/tap/" data-title="tap | dǎ-jiàng-yóu" data-tsina="null" class="share clearfix">
+  <div data-url="http://tedzhou.github.io/2014/07/27/perform_single_object_prelink_cause_build_fail/" data-title="设置&quot;Perform Single-Object Prelink“导致编译失败 | dǎ-jiàng-yóu" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -135,19 +135,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2012/12/28/proxy/" title="proxy">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  proxy</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2012/05/05/safariflickering/"  title="Safari 里CSS GPU加速下闪动的bug">
+<a href="/2013/10/28/click-tap-issues/"  title="touch上点击相关的东西">
  <strong>NEXT:</strong><br/> 
- <span>Safari 里CSS GPU加速下闪动的bug
+ <span>touch上点击相关的东西
 </span>
 </a>
 </div>
@@ -164,7 +156,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#开发touch遇到的坑之一:android下浏览器tap无反应"><span class="toc-number">1.</span> <span class="toc-text">开发touch遇到的坑之一:android下浏览器tap无反应</span></a></li><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#结论"><span class="toc-number">1.1.</span> <span class="toc-text">结论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#<a_href="><span class="toc-number">1.2.</span> <span class="toc-text">Demo</a></span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Verify_final_result_code_for_completed_build_operation"><span class="toc-number">1.</span> <span class="toc-text">Verify final result code for completed build operation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#“Perform_Single-Object_Prelink”_干嘛用的"><span class="toc-number">2.</span> <span class="toc-text">“Perform Single-Object Prelink” 干嘛用的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#categories_in_static_library"><span class="toc-number">3.</span> <span class="toc-text">categories in static library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#包大小"><span class="toc-number">4.</span> <span class="toc-text">包大小</span></a></li></ol>
   </div>
 
 <div id="asidepart">
