@@ -180,6 +180,12 @@
         audioEle.paused ? (speakerIcon.className = speakerIcon.className .replace("speaker_muted",""), audioEle.play()) : (speakerIcon.className += " speaker_muted", audioEle.pause())
     }
 
+    setTimeout(function()
+    {
+        startPlayMusic();
+
+    });
+
     window.onscroll = null;
 </script>
 </body>
