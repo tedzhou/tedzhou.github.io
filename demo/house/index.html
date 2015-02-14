@@ -1,0 +1,116 @@
+
+  
+    <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>微楼书</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link href="js/build/islider.css" rel="stylesheet">
+    <style>
+        *{
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            background: black;
+        }
+        #iSlider-wrapper
+        {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        .slider_background
+        {
+            width:100%;
+            height:100%;
+            background-color:black;
+            position:relative;
+        }
+
+        .slider_cover,.slider_image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+<div id="iSlider-wrapper">
+
+</div>
+<script src="js/build/islider_core.js"></script>
+<script>
+    var wrapper = document.getElementById('iSlider-wrapper');
+    var data = [];
+    var isVerticle = screen.width < screen.height;
+
+    var categoryHeight = wrapper.clientWidth / 640 * 800;
+    var categoryWidth = wrapper.clientWidth;
+
+    if(!isVerticle)
+    {
+        categoryHeight = wrapper.clientHeight;
+        categoryWidth = wrapper.clientHeight / 800 * 640;
+    }
+    var offsetX = 60;
+    var offsetY = 130;
+    var itemHeight = 41;
+    var itemWidth = 320;
+    var tag = 13;
+    var itemHTML = "";
+    var scrollToMap = [9,12,16,21,29];
+    for(var j = 0; j < 5; j++)
+    {
+
+        var scrollTo = 0;
+        itemHTML += '<a href="javascript:iSlider.slideTo('+scrollToMap[j]+')" style="position:absolute; height: '+itemHeight/8+'%;width: '+itemWidth/6.2+'%; top: '+(offsetY+j*(itemHeight+tag))/8+'%;left: '+(offsetX)/6.2+'%;"></a>';
+
+    }
+    var categoryHTML = '<div class="slider_cover" style="width:'+categoryWidth+'px;height:'+categoryHeight+'px;">'+itemHTML+
+            '</div>';
+
+    for(var i = 0; i < 50; i++) {
+
+        var index  = i + 1;
+//        if(index < 10) index = "0" + index;
+
+        data.push({
+            content: [
+                    '<div class="slider_background">',
+                        '<img class="slider_image" data-index="'+i+'" src="img/pic_', index, '.jpg" ',isVerticle?'width':'height','="100%"></img>',
+                        i == 8? categoryHTML : "",
+                    '</div>'
+            ].join("")
+        });
+    }
+    var iSlider = new iSlider({
+        dom : wrapper,
+        data : data,
+        duration: 100,
+        animateType: 'card',
+        isVertical: true,
+        type:"dom"
+    });
+
+</script>
+</body>
+</html>
+
+  

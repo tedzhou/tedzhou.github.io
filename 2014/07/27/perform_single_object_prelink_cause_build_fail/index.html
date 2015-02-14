@@ -23,6 +23,7 @@
     <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
     
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+
 </head>
 
   <body>
@@ -83,18 +84,12 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Verify_final_result_code_for_completed_build_operation"><span class="toc-number">1.</span> <span class="toc-text">Verify final result code for completed build operation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#“Perform_Single-Object_Prelink”_干嘛用的"><span class="toc-number">2.</span> <span class="toc-text">“Perform Single-Object Prelink” 干嘛用的</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#categories_in_static_library"><span class="toc-number">2.1.</span> <span class="toc-text">categories in static library</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包大小"><span class="toc-number">2.2.</span> <span class="toc-text">包大小</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Verify_final_result_code_for_completed_build_operation"><span class="toc-number">1.</span> <span class="toc-text">Verify final result code for completed build operation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#“Perform_Single-Object_Prelink”_干嘛用的"><span class="toc-number">2.</span> <span class="toc-text">“Perform Single-Object Prelink” 干嘛用的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#categories_in_static_library"><span class="toc-number">2.1.</span> <span class="toc-text">categories in static library</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包大小"><span class="toc-number">2.2.</span> <span class="toc-text">包大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
 		</div>
 		
 		<h2 id="Verify_final_result_code_for_completed_build_operation">Verify final result code for completed build operation</h2>
 <p>前段时间我在做一个代码重构的项目中发现一个Xcode奇怪的bug，我们往静态库里面加入了2000多个Objcetive C的class（工具生成），每个class一对.h.m文件，编译时XCode报错:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>Verify final <span class="built_in">result</span> code <span class="keyword">for</span> completed build operation
-
-Build operation failed <span class="keyword">without</span> specifying <span class="keyword">any</span> errors. Individual build tasks may have failed <span class="keyword">for</span> unknown reasons. Some <span class="operator">of</span> these (up <span class="built_in">to</span> <span class="number">12</span>) may be listed below.
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="type">Verify</span> final <span class="literal">result</span> code <span class="keyword">for</span> completed build operation</div><div class="line"></div><div class="line"><span class="type">Build</span> operation failed <span class="keyword">without</span> specifying <span class="type">any</span> errors. <span class="type">Individual</span> build tasks may have failed <span class="keyword">for</span> unknown reasons. <span class="type">Some</span> <span class="keyword">of</span> these (up to <span class="number">12</span>) may be listed below.</div></pre></td></tr></table></figure>
 
 <p>当时定位出可能和文件数量有关，减少文件数量后错误解决。但我自己的新建了个工程，文件比这个工程多也没有问题，想必还有其他因素导致的。</p>
 <p>我考虑了很多可能引起问题的因素，包括依赖太复杂，可能分析dependences的时候文件多爆了栈，也怀疑是某些编译选项导致的。最后才定位出是在<code>Perform Single-Object Prelink</code> 设为yes的时候，文件不能过多。</p>
@@ -113,7 +108,7 @@ Build operation failed <span class="keyword">without</span> specifying <span cla
 <h3 id="包大小">包大小</h3>
 <p>可能我们公司是整个互联网最关心安装包大小的公司了，明显以上的所有方法都是会增加包大小的。我接下来要做的事情就是把那2000多个类没用的代码干掉。</p>
 <h2 id="参考">参考</h2>
-<p>在stackoverflow上有一篇解释category更完成的回答,各位可以参考:<br><a href="http://stackoverflow.com/a/22264650/2882420" target="_blank">Objective-C categories in static library</a></p>
+<p>在stackoverflow上有一篇解释category更完成的回答,各位可以参考:<br><a href="http://stackoverflow.com/a/22264650/2882420" target="_blank" rel="external">Objective-C categories in static library</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -158,7 +153,7 @@ Build operation failed <span class="keyword">without</span> specifying <span cla
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Verify_final_result_code_for_completed_build_operation"><span class="toc-number">1.</span> <span class="toc-text">Verify final result code for completed build operation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#“Perform_Single-Object_Prelink”_干嘛用的"><span class="toc-number">2.</span> <span class="toc-text">“Perform Single-Object Prelink” 干嘛用的</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#categories_in_static_library"><span class="toc-number">2.1.</span> <span class="toc-text">categories in static library</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包大小"><span class="toc-number">2.2.</span> <span class="toc-text">包大小</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Verify_final_result_code_for_completed_build_operation"><span class="toc-number">1.</span> <span class="toc-text">Verify final result code for completed build operation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#“Perform_Single-Object_Prelink”_干嘛用的"><span class="toc-number">2.</span> <span class="toc-text">“Perform Single-Object Prelink” 干嘛用的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#categories_in_static_library"><span class="toc-number">2.1.</span> <span class="toc-text">categories in static library</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包大小"><span class="toc-number">2.2.</span> <span class="toc-text">包大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -170,7 +165,7 @@ Build operation failed <span class="keyword">without</span> specifying <span cla
 	<p class="asidetitle">Categories</p>
 		<ul>
 		
-			<li><a href="/categories/mobile， hole/" title="mobile， hole">mobile， hole<sup>2</sup></a></li>
+			<li><a href="/categories/mobile，-hole/" title="mobile， hole">mobile， hole<sup>2</sup></a></li>
 		
 		</ul>
 </div>
@@ -210,7 +205,7 @@ Build operation failed <span class="keyword">without</span> specifying <span cla
 		
 		
 	</div>
-		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
 		
 		<a href="http://tedzhou.github.io" target="_blank" title="tedzhou">tedzhou</a>
 		

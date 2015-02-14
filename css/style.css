@@ -261,7 +261,6 @@ input[type="search"]::-webkit-search-decoration {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     filter: alpha(opacity=0);
   }
-
   100% {
     opacity: 1;
     -ms-filter: none;
@@ -293,7 +292,6 @@ input[type="search"]::-webkit-search-decoration {
     -ms-transform: translateY(-20px);
     transform: translateY(-20px);
   }
-
   100% {
     opacity: 1;
     -ms-filter: none;
@@ -316,7 +314,6 @@ input[type="search"]::-webkit-search-decoration {
     -ms-transform: translateY(-20px);
     transform: translateY(-20px);
   }
-
   100% {
     opacity: 1;
     -ms-filter: none;
@@ -339,30 +336,6 @@ input[type="search"]::-webkit-search-decoration {
     -ms-transform: translateY(-20px);
     transform: translateY(-20px);
   }
-
-  100% {
-    opacity: 1;
-    -ms-filter: none;
-    filter: none;
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -o-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
-}
-@-ms-keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
-    -webkit-transform: translateY(-20px);
-    -moz-transform: translateY(-20px);
-    -o-transform: translateY(-20px);
-    -ms-transform: translateY(-20px);
-    transform: translateY(-20px);
-  }
-
   100% {
     opacity: 1;
     -ms-filter: none;
@@ -385,7 +358,6 @@ input[type="search"]::-webkit-search-decoration {
     -ms-transform: translateY(-20px);
     transform: translateY(-20px);
   }
-
   100% {
     opacity: 1;
     -ms-filter: none;
