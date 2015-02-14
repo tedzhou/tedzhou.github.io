@@ -180,13 +180,36 @@
         audioEle.paused ? (speakerIcon.className = speakerIcon.className .replace("speaker_muted",""), audioEle.play()) : (speakerIcon.className += " speaker_muted", audioEle.pause())
     }
 
-    setTimeout(function()
-    {
-        startPlayMusic();
+    startPlayMusic();
 
-    });
+    var ScrollFix = function(elem) {
+        // Variables to track inputs
+        var startY, startTopScroll;
 
-    window.onscroll = null;
+        elem = elem || document.querySelector(elem);
+
+        // If there is no element, then do nothing
+        if(!elem)
+            return;
+
+        // Handle the start of interactions
+        elem.addEventListener('touchstart', function(event){
+            startY = event.touches[0].pageY;
+            startTopScroll = elem.scrollTop;
+
+            if(startTopScroll <= 0)
+                elem.scrollTop = 1;
+
+            if(startTopScroll + elem.offsetHeight >= elem.scrollHeight)
+                elem.scrollTop = elem.scrollHeight - elem.offsetHeight - 1;
+        }, false);
+    };
+
+
+    var scrollable = document.body;
+    new ScrollFix(scrollable);
+
+
 </script>
 </body>
 </html>
