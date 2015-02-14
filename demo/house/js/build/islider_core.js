@@ -34,6 +34,8 @@ iSlider = function () {
     var opts = this._opts;
     // dom element wrapping content
     this.wrap = opts.dom;
+    this.lockLeft = opts.lockLeft;
+    this.lockRight = opts.lockRight;
     // your data
     this.data = opts.data;
     // default type
@@ -265,6 +267,7 @@ iSlider = function () {
       var nextEls = n > 0 ? this.els[2] : this.els[0];
       this._renderItem(nextEls, idx);
     }
+    var oldIndex = this.slideIndex;
     // preload when slide
     this._preloadImg(idx);
     // get right item of data
@@ -312,7 +315,7 @@ iSlider = function () {
       setTimeout(function () {
         sEle.style.visibility = 'visible';
       }, 200);
-      this.onslidechange && this.onslidechange(this.slideIndex);
+      this.onslidechange && this.onslidechange(this.slideIndex, oldIndex);
       this.dotchange && this.dotchange();
     }
     // do the trick animation
@@ -495,9 +498,9 @@ iSlider = function () {
     var res = this._endHandler ? this._endHandler(evt) : false;
     var absOffset = Math.abs(offset[axis]);
     var absReverseOffset = Math.abs(offset[this.reverseAxis]);
-    if (!res && offset[axis] >= boundary && absReverseOffset < absOffset) {
+    if (!res && offset[axis] >= boundary && absReverseOffset < absOffset && !this.lockLeft) {
       this.slideTo(this.slideIndex - 1);
-    } else if (!res && offset[axis] < -boundary && absReverseOffset < absOffset) {
+    } else if (!res && offset[axis] < -boundary && absReverseOffset < absOffset && !this.lockRight ) {
       this.slideTo(this.slideIndex + 1);
     } else if (!res) {
       this.slideTo(this.slideIndex);

@@ -49,12 +49,55 @@
             -webkit-transform: translate(-50%,-50%);
             transform: translate(-50%,-50%);
         }
+
+        .slider_hide
+        {
+            opacity: 0;
+        }
+        .slider_show
+        {
+            /*opacity: 1;*/
+            -webkit-animation:show 0.8s ease-in;
+        }
+        @-webkit-keyframes show /* Safari 和 Chrome */
+        {
+            0% {opacity:0;}
+            /*50% {opacity: .5}*/
+            100% {opacity:1;}
+        }
+        .speaker-wrap {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            bottom: 0;
+            right: 0;
+        }
+        .speaker {
+            position: absolute;
+            background-image: url(img/speaker.png);
+            width: 26px;
+            height: 25px;
+            -webkit-background-size: 26px;
+            background-size: 26px;
+            background-position: center;
+            top: 50%;
+            left: 50%;
+            margin: -13px 0 0 -13px;
+        }
+        .speaker_muted
+        {
+            background-image: url(img/speaker_muted.png);
+        }
     </style>
 </head>
 <body>
 <div id="iSlider-wrapper">
 
 </div>
+<div id="speakerEle" class="speaker-wrap">
+    <div id="speakerIcon" class="speaker"></div>
+</div>
+<audio id="audioEle" src="music.mp3" autoplay="autoplay" loop="loop"></audio>
 <script src="js/build/islider_core.js"></script>
 <script>
     var wrapper = document.getElementById('iSlider-wrapper');
@@ -75,27 +118,25 @@
     var itemWidth = 320;
     var tag = 13;
     var itemHTML = "";
-    var scrollToMap = [9,12,16,21,29];
+    var sectionBeginIndex = [9,12,16,21,29];
+    var sectionEndIndex = [11,15,20,28,44];
     for(var j = 0; j < 5; j++)
     {
-
         var scrollTo = 0;
-        itemHTML += '<a href="javascript:iSlider.slideTo('+scrollToMap[j]+')" style="position:absolute; height: '+itemHeight/8+'%;width: '+itemWidth/6.2+'%; top: '+(offsetY+j*(itemHeight+tag))/8+'%;left: '+(offsetX)/6.2+'%;"></a>';
-
+        itemHTML += '<a href="javascript:iSlider.slideTo('+sectionBeginIndex[j]+')" style="position:absolute; height: '+itemHeight/8+'%;width: '+itemWidth/6.2+'%; top: '+(offsetY+j*(itemHeight+tag))/8+'%;left: '+(offsetX)/6.2+'%;"></a>';
     }
     var categoryHTML = '<div class="slider_cover" style="width:'+categoryWidth+'px;height:'+categoryHeight+'px;">'+itemHTML+
             '</div>';
 
-    for(var i = 0; i < 50; i++) {
-
+    for(var i = 0; i < 45; i++) {
         var index  = i + 1;
-//        if(index < 10) index = "0" + index;
-
         data.push({
             content: [
                     '<div class="slider_background">',
-                        '<img class="slider_image" data-index="'+i+'" src="img/pic_', index, '.jpg" ',isVerticle?'width':'height','="100%"></img>',
+                        '<img class="slider_image" src="bg/pic_', index, '.jpg" ',isVerticle?'width':'height','="100%"></img>',
+                        i != 0 ?('<img class="slider_cover slider_hide" data-index="'+i+'" src="text/pic_'+ index+ '.png" '+(isVerticle?'width':'height')+'="100%"></img>'):'',
                         i == 8? categoryHTML : "",
+                        sectionEndIndex.indexOf(i) >= 0 ? '<a href="javascript:iSlider.slideTo(8);" style="background: blue; color: white; font-size: 50px;">back</a>' : '',
                     '</div>'
             ].join("")
         });
@@ -105,10 +146,41 @@
         data : data,
         duration: 100,
         animateType: 'card',
-        isVertical: true,
         type:"dom"
     });
 
+    iSlider.onslidechange = function(i, o) {
+        iSlider.lockLeft = false;
+        iSlider.lockRight = false;
+
+        var dom = document.querySelector('[data-index="'+i+'"]');
+        if(dom) {
+            dom.className = dom.className.replace("slider_hide", "slider_show");
+        }
+
+        var domBefore = document.querySelector('[data-index="'+o+'"]');
+        if(domBefore) {
+            domBefore.className = domBefore.className.replace("slider_show", "slider_hide");
+        }
+
+        if(sectionBeginIndex.indexOf(i) >= 0) {
+            iSlider.lockLeft = true;
+        }
+    };
+
+    var speakerEle = document.querySelector('#speakerEle');
+    var speakerIcon = document.querySelector('#speakerIcon');
+    speakerEle.onclick = toggleMusic;
+    var audioEle = document.querySelector("#audioEle");
+    var firstTaped = 0;
+    function startPlayMusic() {
+        0 === firstTaped && (audioEle.play(), firstTaped = 1)
+    }
+    function toggleMusic() {
+        audioEle.paused ? (speakerIcon.className = speakerIcon.className .replace("speaker_muted",""), audioEle.play()) : (speakerIcon.className += " speaker_muted", audioEle.pause())
+    }
+
+    window.onscroll = null;
 </script>
 </body>
 </html>
