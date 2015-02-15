@@ -1,0 +1,344 @@
+
+  
+    <!DOCTYPE HTML>
+<html lang="zh-CN" style="position: fixed;width:100%; height: 100%">
+<head>
+    <meta charset="UTF-8">
+    <title>微楼书</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content=" initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link href="js/build/islider.css" rel="stylesheet">
+    <style>
+
+    /*a:focus,*/
+    /*a:active,*/
+    /*a:hover {*/
+        /*outline: 0;*/
+        /*color: transparent;*/
+    /*}*/
+    button{
+        overflow: visible;
+        padding: 0;
+        margin: 0;
+        border: 0 none;
+        background-color: transparent;
+    }
+        *{
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        body
+        {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            background: black;
+        }
+        #iSlider-wrapper
+        {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        .slider_background
+        {
+            width:100%;
+            height:100%;
+            background-color:black;
+            position:relative;
+        }
+
+        .slider_cover,.slider_image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+        }
+
+        .slider_hide
+        {
+            opacity: 0;
+        }
+        .slider_show
+        {
+            /*opacity: 1;*/
+            -webkit-animation:show 1s ease-in;
+            animation:show 1s ease-in;
+        }
+
+        .animate_fade
+        {
+            -webkit-animation:fade 1.4s ease-in infinite;
+            animation:fade 2s ease-in infinite;
+        }
+        .slider_in_and_out
+        {
+            -webkit-animation:in_and_out .6s ease-out infinite;
+            animation:in_and_out .6s ease-out infinite;
+        }
+        @-webkit-keyframes fade /* Safari 和 Chrome */
+        {
+            0% {opacity:0;}
+            50% {opacity: 1}
+            100% {opacity:0;}
+        }
+        @-webkit-keyframes show /* Safari 和 Chrome */
+        {
+            0% {opacity:0;}
+            /*50% {opacity: .5}*/
+            100% {opacity:1;}
+        }
+
+        @-webkit-keyframes in_and_out /* Safari 和 Chrome */
+        {
+            0% {margin-left:0px;}
+            100% {margin-left:-5px;}
+        }
+        .speaker-wrap {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            bottom: 0;
+            right: 0;
+        }
+        .speaker {
+            position: absolute;
+            background-image: url(img/speaker.png);
+            width: 26px;
+            height: 25px;
+            -webkit-background-size: 26px;
+            background-size: 26px;
+            background-position: center;
+            top: 50%;
+            left: 50%;
+            margin: -13px 0 0 -13px;
+        }
+        .speaker_muted
+        {
+            background-image: url(img/speaker_muted.png);
+        }
+        .back_button
+        {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: url(img/back.png)  no-repeat;
+            background-size: contain;
+            z-index:99;
+        }
+
+        .right_button
+        {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            margin-top: -15px;
+            background: url(img/left.png)  no-repeat;
+            background-size: contain;
+            z-index:99;
+
+            /*如果剪头向左的话，去掉这里的注释*/
+            /*-webkit-transform: rotate(180deg);*/
+            /*transform: rotate(180deg);*/
+        }
+        .icon-music {
+            /*position: absolute;*/
+            /*background: url(img/music.png);*/
+            bottom: 10px;
+            right:  10px;
+            position: absolute;
+            background-image: url(img/music.png);
+            width: 26px;
+            height: 25px;
+            -webkit-background-size: 26px;
+            background-size: 26px;
+            background-position: center;
+
+        }
+        .icon-music-moving {
+            -webkit-animation: reverseRotataZ 1.2s linear infinite;
+        }
+
+        @-webkit-keyframes reverseRotataZ {
+            0% {
+                -webkit-transform: rotateZ(0deg)
+            }
+            100% {
+                -webkit-transform: rotateZ(-360deg)
+            }
+        }
+    </style>
+</head>
+<body>
+<button id="back_button" class="back_button animate_fade" onclick="iSlider.slideTo(8);" style="display:none"></button>
+<button id="right_button" class="right_button animate_fade" onclick="iSlider.slideTo(iSlider.slideIndex+1);" style=""></button>
+
+<div id="iSlider-wrapper">
+
+</div>
+<i id="speakerEle" class="icon-music icon-music-moving"></i>
+<!--<div id="speakerEle" class="speaker-wrap">-->
+    <!--<div id="speakerIcon" class="speaker"></div>-->
+<!--</div>-->
+<audio id="audioEle" src="music.mp3" autoplay="autoplay" loop="loop"></audio>
+<script src="js/build/islider_core.js"></script>
+<script>
+    var wrapper = document.getElementById('iSlider-wrapper');
+    var data = [];
+    var isVerticle = screen.width < screen.height;
+
+    var categoryHeight = wrapper.clientWidth / 640 * 800;
+    var categoryWidth = wrapper.clientWidth;
+
+    if(!isVerticle)
+    {
+        categoryHeight = wrapper.clientHeight;
+        categoryWidth = wrapper.clientHeight / 800 * 640;
+    }
+    var offsetX = 60;
+    var offsetY = 130;
+    var itemHeight = 41;
+    var itemWidth = 320;
+    var tag = 13;
+    var itemHTML = "";
+    var sectionBeginIndex = [9,12,16,21,29];
+    var sectionEndIndex = [11,15,20,28,44];
+    for(var j = 0; j < 5; j++)
+    {
+        var scrollTo = 0;
+        itemHTML += '<img class="slider_hide slider_in_and_out" data-hook="row" src="img/arrow.png" style="width:'+ 25/6.2 +'%; height:'+25/8+'%; position: absolute; top: '+(133+j*(25+30))/8+'%;left: '+96/6.2+'%;"/>';
+        itemHTML += '<button onclick="iSlider.slideTo('+sectionBeginIndex[j]+')" style="position:absolute; height: '+itemHeight/8+'%;width: '+itemWidth/6.2+'%; top: '+(offsetY+j*(itemHeight+tag))/8+'%;left: '+(offsetX)/6.2+'%;"></button>';
+    }
+    var categoryHTML = '<div class="slider_cover" style="width:'+categoryWidth+'px;height:'+categoryHeight+'px;">'+itemHTML+
+            '</div>';
+
+    var backEl = document.querySelector('#back_button');
+    var rightEl = document.querySelector('#right_button');
+
+    for(var i = 0; i < 45; i++) {
+        var index  = i + 1;
+        data.push({
+            content: [
+                    '<div class="slider_background">',
+                        '<img class="slider_image" src="bg/pic_', index, '.jpg" ',isVerticle?'width':'height','="100%"></img>',
+                        i != 0 ?('<img class="slider_cover slider_hide" data-index="'+i+'" src="text/pic_'+ index+ '.png" '+(isVerticle?'width':'height')+'="100%"></img>'):'',
+                        i == 8? categoryHTML : "",
+//                (sectionEndIndex.indexOf(i) >= 0 || true) ? backHTML : '',
+                    '</div>'
+            ].join("")
+        });
+    }
+    var iSlider = new iSlider({
+        dom : wrapper,
+        data : data,
+        duration: 100,
+        animateType: 'card',
+        type:"dom"
+    });
+
+    var hooks;
+    var hookstimer;
+    var timer;
+    iSlider.onslidechange = function(i, o) {
+        backEl.style.display = "none";
+        rightEl.style.display = "none";
+        iSlider.lockLeft = false;
+        iSlider.lockRight = false;
+        clearTimeout(timer);
+        var dom = document.querySelector('[data-index="' + i + '"]');
+        if (dom) {
+            timer = setTimeout(function () {
+                if (dom) dom.className = dom.className.replace("slider_hide", "slider_show");
+            }, 300);
+        }
+
+        var domBefore = document.querySelector('[data-index="' + o + '"]');
+        if (domBefore) {
+            domBefore.className = domBefore.className.replace("slider_show", "slider_hide");
+        }
+
+        if (sectionBeginIndex.indexOf(i) >= 0) {
+            iSlider.lockLeft = true;
+        }
+        if (sectionEndIndex.indexOf(i) >= 0 || i == 8) {
+            iSlider.lockRight = true;
+
+        } else {
+            rightEl.style.display = "";
+        }
+
+
+        if (sectionEndIndex.indexOf(i) >= 0) {
+            backEl.style.display = "";
+        }
+
+        if(i == 8) {
+            hooks = document.querySelectorAll("[data-hook='row']");
+
+            if(hooks) {
+                hookstimer = setTimeout(function(){
+                    if(hooks && hooks.length > 0) {
+                        for(var i = 0 ;i < hooks.length; i++) {
+                            var hook = hooks[i];
+                            hook.className = hook.className.replace("slider_hide", "");
+                        }
+                    }
+                }, 600);
+            }
+        }
+        if(o == 8) {
+            hooks = document.querySelectorAll("[data-hook='row']");
+            if(hooks) {
+                for(var i = 0 ;i <hooks.length;i++) {
+                    var hook = hooks[i];
+                    hook.className += " slider_hide";
+                }
+            }
+        }
+
+    };
+
+    var speakerEle = document.querySelector('#speakerEle');
+    speakerEle.onclick = toggleMusic;
+    var audioEle = document.querySelector("#audioEle");
+    var firstTaped = 0;
+    function startPlayMusic() {
+        0 === firstTaped && (audioEle.play(), firstTaped = 1)
+    }
+    function toggleMusic() {
+        if (audioEle.paused) {
+            speakerEle.className += " icon-music-moving";
+
+            audioEle.play()
+        } else {
+            speakerEle.className = speakerEle.className.replace("icon-music-moving", "");
+
+            audioEle.pause()
+        }
+        firstTaped = 1;
+    }
+
+    document.body.addEventListener('touchstart', function(e){
+        if(audioEle.paused) {
+            startPlayMusic();
+        }
+    });
+
+</script>
+</body>
+</html>
+
+  
