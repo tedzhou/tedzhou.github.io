@@ -166,6 +166,9 @@
         if(sectionBeginIndex.indexOf(i) >= 0) {
             iSlider.lockLeft = true;
         }
+        if(sectionEndIndex.indexOf(i)>=0 || i == 8) {
+            iSlider.lockRight = true;
+        }
     };
 
     var speakerEle = document.querySelector('#speakerEle');
@@ -177,10 +180,15 @@
         0 === firstTaped && (audioEle.play(), firstTaped = 1)
     }
     function toggleMusic() {
-        audioEle.paused ? (speakerIcon.className = speakerIcon.className .replace("speaker_muted",""), audioEle.play()) : (speakerIcon.className += " speaker_muted", audioEle.pause())
+        audioEle.paused ? (speakerIcon.className = speakerIcon.className.replace("speaker_muted",""), audioEle.play()) : (speakerIcon.className += " speaker_muted", audioEle.pause())
+        firstTaped = 1;
     }
 
-    startPlayMusic();
+    document.body.addEventListener('touchstart', function(e){
+        if(audioEle.paused) {
+            startPlayMusic();
+        }
+    });
 
 </script>
 </body>
