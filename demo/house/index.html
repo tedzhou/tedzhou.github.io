@@ -58,12 +58,36 @@
         {
             /*opacity: 1;*/
             -webkit-animation:show 1s ease-in;
+            animation:show 1s ease-in;
+        }
+
+        .animate_fade
+        {
+            -webkit-animation:fade 1.4s ease-in infinite;
+            animation:fade 2s ease-in infinite;
+        }
+        .slider_in_and_out
+        {
+            -webkit-animation:in_and_out .6s ease-out infinite;
+            animation:in_and_out .6s ease-out infinite;
+        }
+        @-webkit-keyframes fade /* Safari 和 Chrome */
+        {
+            0% {opacity:0;}
+            50% {opacity: 1}
+            100% {opacity:0;}
         }
         @-webkit-keyframes show /* Safari 和 Chrome */
         {
             0% {opacity:0;}
             /*50% {opacity: .5}*/
             100% {opacity:1;}
+        }
+
+        @-webkit-keyframes in_and_out /* Safari 和 Chrome */
+        {
+            0% {margin-left:0px;}
+            100% {margin-left:-5px;}
         }
         .speaker-wrap {
             position: absolute;
@@ -100,7 +124,8 @@
             z-index:99;
         }
 
-        .right_button {
+        .right_button
+        {
             position: absolute;
             top: 50%;
             right: 10px;
@@ -115,18 +140,45 @@
             /*-webkit-transform: rotate(180deg);*/
             /*transform: rotate(180deg);*/
         }
+        .icon-music {
+            /*position: absolute;*/
+            /*background: url(img/music.png);*/
+            bottom: 10px;
+            right:  10px;
+            position: absolute;
+            background-image: url(img/music.png);
+            width: 26px;
+            height: 25px;
+            -webkit-background-size: 26px;
+            background-size: 26px;
+            background-position: center;
+
+        }
+        .icon-music-moving {
+            -webkit-animation: reverseRotataZ 1.2s linear infinite;
+        }
+
+        @-webkit-keyframes reverseRotataZ {
+            0% {
+                -webkit-transform: rotateZ(0deg)
+            }
+            100% {
+                -webkit-transform: rotateZ(-360deg)
+            }
+        }
     </style>
 </head>
 <body>
-<a id="back_button" class="back_button" href="javascript:iSlider.slideTo(8);" style="display:none" target="_blank" rel="external"></a>
-<a id="right_button" class="right_button" href="javascript:iSlider.slideTo(iSlider.slideIndex+1);" style="" target="_blank" rel="external"></a>
+<a id="back_button" class="back_button animate_fade" href="javascript:iSlider.slideTo(8);" style="display:none" target="_blank" rel="external"></a>
+<a id="right_button" class="right_button animate_fade" href="javascript:iSlider.slideTo(iSlider.slideIndex+1);" style="" target="_blank" rel="external"></a>
 
 <div id="iSlider-wrapper">
 
 </div>
-<div id="speakerEle" class="speaker-wrap">
-    <div id="speakerIcon" class="speaker"></div>
-</div>
+<i id="speakerEle" class="icon-music icon-music-moving"></i>
+<!--<div id="speakerEle" class="speaker-wrap">-->
+    <!--<div id="speakerIcon" class="speaker"></div>-->
+<!--</div>-->
 <audio id="audioEle" src="music.mp3" autoplay="autoplay" loop="loop"></audio>
 <script src="js/build/islider_core.js"></script>
 <script>
@@ -153,6 +205,7 @@
     for(var j = 0; j < 5; j++)
     {
         var scrollTo = 0;
+        itemHTML += '<img class="slider_hide slider_in_and_out" data-hook="row" src="img/arrow.png" style="width:'+ 25/6.2 +'%; height:'+25/8+'%; position: absolute; top: '+(133+j*(25+30))/8+'%;left: '+96/6.2+'%;"/>';
         itemHTML += '<a href="javascript:iSlider.slideTo('+sectionBeginIndex[j]+')" style="position:absolute; height: '+itemHeight/8+'%;width: '+itemWidth/6.2+'%; top: '+(offsetY+j*(itemHeight+tag))/8+'%;left: '+(offsetX)/6.2+'%;"></a>';
     }
     var categoryHTML = '<div class="slider_cover" style="width:'+categoryWidth+'px;height:'+categoryHeight+'px;">'+itemHTML+
@@ -182,6 +235,8 @@
         type:"dom"
     });
 
+    var hooks;
+    var hookstimer;
     var timer;
     iSlider.onslidechange = function(i, o) {
         backEl.style.display = "none";
@@ -206,6 +261,7 @@
         }
         if (sectionEndIndex.indexOf(i) >= 0 || i == 8) {
             iSlider.lockRight = true;
+
         } else {
             rightEl.style.display = "";
         }
@@ -215,11 +271,33 @@
             backEl.style.display = "";
         }
 
+        if(i == 8) {
+            hooks = document.querySelectorAll("[data-hook='row']");
+
+            if(hooks) {
+                hookstimer = setTimeout(function(){
+                    if(hooks && hooks.length > 0) {
+                        for(var i = 0 ;i < hooks.length; i++) {
+                            var hook = hooks[i];
+                            hook.className = hook.className.replace("slider_hide", "");
+                        }
+                    }
+                }, 600);
+            }
+        }
+        if(o == 8) {
+            hooks = document.querySelectorAll("[data-hook='row']");
+            if(hooks) {
+                for(var i = 0 ;i <hooks.length;i++) {
+                    var hook = hooks[i];
+                    hook.className += " slider_hide";
+                }
+            }
+        }
 
     };
 
     var speakerEle = document.querySelector('#speakerEle');
-    var speakerIcon = document.querySelector('#speakerIcon');
     speakerEle.onclick = toggleMusic;
     var audioEle = document.querySelector("#audioEle");
     var firstTaped = 0;
@@ -227,7 +305,15 @@
         0 === firstTaped && (audioEle.play(), firstTaped = 1)
     }
     function toggleMusic() {
-        audioEle.paused ? (speakerIcon.className = speakerIcon.className.replace("speaker_muted",""), audioEle.play()) : (speakerIcon.className += " speaker_muted", audioEle.pause())
+        if (audioEle.paused) {
+            speakerEle.className += " icon-music-moving";
+
+            audioEle.play()
+        } else {
+            speakerEle.className = speakerEle.className.replace("icon-music-moving", "");
+
+            audioEle.pause()
+        }
         firstTaped = 1;
     }
 
