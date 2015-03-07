@@ -453,13 +453,13 @@ iSlider = function () {
     this.startX = device.hasTouch ? evt.targetTouches[0].pageX : evt.pageX;
     this.startY = device.hasTouch ? evt.targetTouches[0].pageY : evt.pageY;
     this._startHandler && this._startHandler(evt);
-      alert("touch move");
   };
   /**
   *  touchmove callback
   *  @param {Object}   evt   event obj
   */
   iSlider.prototype.moveHandler = function (evt) {
+      alert("move test");
     if (this.isMoving) {
       var device = this._device();
       var len = this.data.length;
