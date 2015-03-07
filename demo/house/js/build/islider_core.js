@@ -339,11 +339,13 @@ iSlider = function () {
     var startEvt = hasTouch ? 'touchstart' : 'mousedown';
     var moveEvt = hasTouch ? 'touchmove' : 'mousemove';
     var endEvt = hasTouch ? 'touchend' : 'mouseup';
+    var cancelEvt = 'touchcancel';
     return {
       hasTouch: hasTouch,
       startEvt: startEvt,
       moveEvt: moveEvt,
-      endEvt: endEvt
+      endEvt: endEvt,
+      cancelEvt:cancelEvt
     };
   };
   /**
@@ -364,6 +366,7 @@ iSlider = function () {
     outer.addEventListener(device.startEvt, this);
     outer.addEventListener(device.moveEvt, this);
     outer.addEventListener(device.endEvt, this);
+    outer.addEventListener(device.cancelEvt, this);
     window.addEventListener('orientationchange', this);
   };
   /**
@@ -399,6 +402,7 @@ iSlider = function () {
     outer.removeEventListener(device.startEvt, this);
     outer.removeEventListener(device.moveEvt, this);
     outer.removeEventListener(device.endEvt, this);
+    outer.removeEventListener(device.cancelEvt, this);
     window.removeEventListener('orientationchange', this);
     window.removeEventListener('focus', this);
     window.removeEventListener('blur', this);
@@ -418,6 +422,7 @@ iSlider = function () {
       this.moveHandler(evt);
       break;
     case device.endEvt:
+    case device.cancelEvt:
       this.endHandler(evt);
       break;
     case 'orientationchange':
