@@ -174,8 +174,8 @@
     </style>
 </head>
 <body>
-<a id="back_button" class="back_button animate_fade" href="javascript:iSlider.slideTo(8);return false;" style="display:none" target="_blank" rel="external"></a>
-<a id="right_button" class="right_button animate_fade" href="javascript:iSlider.slideTo(iSlider.slideIndex+1);return false;" style="" target="_blank" rel="external"></a>
+<a id="back_button" class="back_button animate_fade" href="javascript:iSlider.slideTo(8);" style="display:none" target="_blank" rel="external"></a>
+<a id="right_button" class="right_button animate_fade" href="javascript:iSlider.slideTo(iSlider.slideIndex+1);" style="" target="_blank" rel="external"></a>
 
 <div id="iSlider-wrapper">
 
@@ -211,7 +211,7 @@
     {
         var scrollTo = 0;
         itemHTML += '<img class="slider_hide" data-hook="row" src="img/arrow.png" style="width:'+ 35/6.2 +'%; height:'+35/8+'%; position: absolute; top: '+(108+j*(35+43))/8+'%;left: '+93/6.2+'%;"/>';
-        itemHTML += '<a href="javascript:iSlider.slideTo('+sectionBeginIndex[j]+');return false;" style="position:absolute; height: '+itemHeight/8+'%;width: '+itemWidth/6.2+'%; top: '+(offsetY+j*(itemHeight+gap))/8+'%;left: '+(offsetX)/6.2+'%;"></a>';
+        itemHTML += '<a href="javascript:iSlider.slideTo('+sectionBeginIndex[j]+');" style="position:absolute; height: '+itemHeight/8+'%;width: '+itemWidth/6.2+'%; top: '+(offsetY+j*(itemHeight+gap))/8+'%;left: '+(offsetX)/6.2+'%;"></a>';
     }
     var categoryHTML = '<div class="slider_cover" style="width:'+categoryWidth+'px;height:'+categoryHeight+'px;">'+itemHTML+
             '</div>';
