@@ -16,7 +16,7 @@
  */
 var iSlider, islider_core;
 iSlider = function () {
-  alert("this is test");
+  alert("this is a fix page test");
   var iSlider = function (opts) {
     if (!opts.dom) {
       throw new Error('dom element can not be empty!');
@@ -440,8 +440,9 @@ iSlider = function () {
   *  touchstart callback
   *  @param {Object}   evt   event obj
   */
+  var timer = null;
   iSlider.prototype.startHandler = function (evt) {
-    if (this._opts.fixPage) {
+    if (this._opts.fixPage || true) {
       evt.preventDefault();
     }
     var device = this._device();
@@ -453,13 +454,13 @@ iSlider = function () {
     this.startX = device.hasTouch ? evt.targetTouches[0].pageX : evt.pageX;
     this.startY = device.hasTouch ? evt.targetTouches[0].pageY : evt.pageY;
     this._startHandler && this._startHandler(evt);
+
   };
   /**
   *  touchmove callback
   *  @param {Object}   evt   event obj
   */
   iSlider.prototype.moveHandler = function (evt) {
-      alert("move test");
     if (this.isMoving) {
       var device = this._device();
       var len = this.data.length;
@@ -495,6 +496,7 @@ iSlider = function () {
   *  @param {Object}   evt   event obj
   */
   iSlider.prototype.endHandler = function (evt) {
+    clearInterval(timer);
     this.isMoving = false;
     var offset = this.offset;
     var axis = this.axis;
