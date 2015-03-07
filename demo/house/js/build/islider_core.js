@@ -441,7 +441,7 @@ iSlider = function () {
   *  @param {Object}   evt   event obj
   */
   iSlider.prototype.startHandler = function (evt) {
-    if (this._opts.fixPage) {
+    if (this._opts.fixPage && !/^(?:INPUT|TEXTAREA|A)$/.test(evt.target.tagName)) {
       evt.preventDefault();
     }
     var device = this._device();
