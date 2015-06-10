@@ -30,6 +30,15 @@
 </div></div>
 <div class="sl-block" data-block-type="text" data-block-id="445b36e7e5274221327c7196b36e71a6" style="height: auto; min-width: 30px; min-height: 30px; width: 140px; left: 720px; top: 524px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
 <pre>tedzhou</pre>
+</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 61px; top: 110px; height: auto;" data-block-id="0e536695caf0852fed58bab05dfd1c1f"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text">
+<h2>主要内容</h2>
+</div></div>
+<div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 220px; height: auto;" data-block-id="bd726e2fd8ea3b080570a90074f1ce52"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="color: rgb(106, 168, 79);">
+<ul>
+	<li><span style="color:#008000"><span style="font-size:48px">复用</span></span></li>
+	<li><span style="color:#008000"><span style="font-size:48px">缓存</span></span></li>
+	<li><span style="color:#008000"><span style="font-size:48px">不要出panel</span></span></li>
+</ul>
 </div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="1fff097cc6fca37fa7580f7d8eb78af3"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 10;">
 <h2>about 16ms</h2>
 </div></div>
@@ -39,11 +48,14 @@
 <div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 173px; height: auto;" data-block-id="05d3ee3f6491386b91f05aa5480c3295"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 11;">
 <h2>上古时期的优化</h2>
 </div></div>
-<div class="sl-block" data-block-type="code" data-block-id="aadc011bf88e4e47422552465ea84f61" style="min-width: 30px; min-height: 30px; width: 800px; height: 335px; left: 80px; top: 253px;"><div class="sl-block-content" style="z-index: 13;"><pre><code>float t1 = Time.realtimeSinceStartup * 1000;
-float t2 = t1;
-
-for(i = 0; i &lt; _currentUIActions.Count; i ++)
+<div class="sl-block" data-block-type="code" data-block-id="aadc011bf88e4e47422552465ea84f61" style="min-width: 30px; min-height: 30px; width: 800px; height: 398px; left: 80px; top: 253px;"><div class="sl-block-content" style="z-index: 13;"><pre><code>void Update()
 {
+
+    float t1 = Time.realtimeSinceStartup * 1000;
+    float t2 = t1;
+    
+    for(i = 0; i &lt; _currentUIActions.Count; i ++)
+    {
 	if(t2 - t1 &lt; ((1000 * 0.5f) / Application.targetFrameRate))
 	{
 		_currentUIActions[i]();
@@ -53,17 +65,21 @@ for(i = 0; i &lt; _currentUIActions.Count; i ++)
 	{
 		break;
 	}
+    }
 }</code></pre></div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 70px; height: auto;" data-block-id="a27e077fe35c29a297ae53002f083c2f"><div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text" style="z-index: 11;">
 <h1><span style="font-size:48px">Loom.QueueForUIAction</span></h1>
 </div></div>
 <div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 173px; height: auto;" data-block-id="346b4c564d410564d2f82db03a82aa0f"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Subtitle" style="z-index: 12;">
 <h2>上古时期的优化</h2>
 </div></div>
-<div class="sl-block" data-block-type="code" style="width: 800px; height: 335px; left: 80px; top: 253px;" data-block-id="973639747c02e15a030c076896d639fe"><div class="sl-block-content" style="z-index: 13;"><pre><code>float t1 = Time.realtimeSinceStartup * 1000;
-float t2 = t1;
-
-for(i = 0; i &lt; _currentUIActions.Count; i ++)
+<div class="sl-block" data-block-type="code" style="width: 813px; height: 403px; left: 80px; top: 253px;" data-block-id="973639747c02e15a030c076896d639fe"><div class="sl-block-content" style="z-index: 13;"><pre><code>void Update()
 {
+
+    float t1 = Time.realtimeSinceStartup * 1000;
+    float t2 = t1;
+    
+    for(i = 0; i &lt; _currentUIActions.Count; i ++)
+    {
 	if(t2 - t1 &lt; ((1000 * 0.5f) / Application.targetFrameRate))
 	{
 		_currentUIActions[i]();
@@ -73,8 +89,9 @@ for(i = 0; i &lt; _currentUIActions.Count; i ++)
 	{
 		break;
 	}
+    }
 }</code></pre></div></div>
-<div class="sl-block" data-block-type="text" data-block-id="e3fefe3433826e5c27fae04a9f427c02" style="height: auto; min-width: 30px; min-height: 30px; width: 782px; left: 79px; top: 291px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<div class="sl-block" data-block-type="text" data-block-id="e3fefe3433826e5c27fae04a9f427c02" style="height: auto; min-width: 30px; min-height: 30px; width: 782px; left: 71px; top: 318px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
 <h1><span style="color:#FFFF00"><strong><span style="font-size:72px">有了listview, 这玩意</span></strong></span></h1>
 
 <h1><span style="color:#FFFF00"><strong><span style="font-size:72px">并没有什么卵用了</span></strong></span></h1>
@@ -206,24 +223,26 @@ for(i = 0; i &lt; _currentUIActions.Count; i ++)
 </div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="f62e0e25943441d10a7b7ce7ae7309c0"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
 <h2>what' next?</h2>
 </div></div>
-<div class="sl-block" data-block-type="image" data-block-id="f1d77fb241a693f2c501f41512246bfb" style="min-width: 30px; min-height: 30px; width: 905.033033033033px; height: 272px; left: 27px; top: 175px;"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="1108" data-natural-height="333" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1472950/pasted-from-clipboard.png"></div></div>
-<div class="sl-block" data-block-type="text" data-block-id="89b6e0938838d879e9c25b2b270d2273" style="height: auto; min-width: 30px; min-height: 30px; width: 554px; left: 190px; top: 504px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+
+<div class="sl-block" data-block-type="text" data-block-id="89b6e0938838d879e9c25b2b270d2273" style="height: auto; min-width: 30px; min-height: 30px; width: 554px; left: 190px; top: 504px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
 <p><strong><span style="font-size:48px"><span style="color:#008000">AddChild花20ms? </span></span></strong></p>
-</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="30aaa55a568f2b3e4db578c6c0cdbc90"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="b05a323490f59a2e409cb605c90fd6c2" style="min-width: 30px; min-height: 30px; width: 931.674033149171px; height: 246px; left: 14px; top: 174px;"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="1371" data-natural-height="362" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1477917/pasted-from-clipboard.png"></div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="30aaa55a568f2b3e4db578c6c0cdbc90"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
 <h2>what the hell...</h2>
 </div></div>
-<div class="sl-block" data-block-type="image" data-block-id="51e22da53ecfa22e530ae8ae4f38ce16" style="min-width: 30px; min-height: 30px; width: 927.827433628319px; height: 277px; left: 15px; top: 143px;"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="757" data-natural-height="226" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1472972/pasted-from-clipboard.png"></div></div>
-<div class="sl-block" data-block-type="text" data-block-id="300e3f33362b881613c4be582253a1b2" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 15px; top: 443px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
+
+<div class="sl-block" data-block-type="text" data-block-id="300e3f33362b881613c4be582253a1b2" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 15px; top: 443px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
 <p style="text-align:left"><span style="font-size:48px"><span style="color:#008000">为毛要onEnable?</span></span></p>
 </div></div>
-<div class="sl-block" data-block-type="text" data-block-id="a9af4176a905e42a28bb74ebf8157836" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 20px; top: 521px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 14;">
+<div class="sl-block" data-block-type="text" data-block-id="a9af4176a905e42a28bb74ebf8157836" style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 20px; top: 521px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
 <p style="text-align:left"><span style="font-size:48px"><span style="color:#008000">为毛要CreatePanel?</span></span></p>
-</div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="73abd0f81806fd041b995c6bb687def8"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
+</div></div>
+<div class="sl-block" data-block-type="image" data-block-id="14c1f3fa00d700298d2ab802a5b8d88f" style="min-width: 30px; min-height: 30px; width: 909.373134328358px; height: 280px; left: 29px; top: 140px;"><div class="sl-block-content" style="z-index: 14;"><img style="" data-natural-width="1088" data-natural-height="335" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1477919/pasted-from-clipboard.png"></div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="73abd0f81806fd041b995c6bb687def8"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
 <h2>为毛要OnEnable</h2>
 </div></div>
 <div class="sl-block" data-block-type="image" data-block-id="0e1f438c7b8da04e47015d4ac03d789a" style="min-width: 30px; min-height: 30px; width: 221.973094170404px; height: 300px; left: 705px; top: 166px;"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="165" data-natural-height="223" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1473018/pasted-from-clipboard.png"></div></div>
 <div class="sl-block" data-block-type="text" data-block-id="559d59573a9d1a8879a1eb23742e53dc" style="height: auto; min-width: 30px; min-height: 30px; width: 653px; left: 16px; top: 389px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 13;">
-<p><span style="color:#8B4513"><span style="font-size:48px">这个ObjectPool是disabled的</span></span></p>
+<p><span style="color:#008000"><span style="font-size:48px">这个ObjectPool是disabled的</span></span></p>
 </div></div>
 <div class="sl-block" data-block-type="shape" data-block-id="1033603a4b8c07609948813416cec4ee" style="min-width: 4px; min-height: 4px; width: 46px; height: 226px; left: 659px; top: 307px;"><div class="sl-block-content" data-shape-type="arrow-right" data-shape-fill-color="#000000" data-shape-stretch="false" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%" preserveaspectratio="xMidYMid" viewbox="0 0 46 46"><polygon points="0,13.799999999999999 23,13.799999999999999 23,0 46,23 23,46 23,32.199999999999996 0,32.199999999999996" class="shape-element" fill="#000000"></polygon></svg></div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="04a0cecf6008176366b69e419d4a7769"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
 <h2>为毛要CreatePanel</h2>
@@ -254,7 +273,7 @@ for(i = 0; i &lt; _currentUIActions.Count; i ++)
 </div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="eaae7f97fc729dab21abdb682a1fc074"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
 <h2>look look demo then say</h2>
 </div></div>
-<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 365.384444444444px; height: 566px; left: 320px; top: 124px;" data-block-id="f14d663cf53b0db802e1861f1a4e4096"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="581" data-natural-height="900" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1477711/F577A2F4-604F-4B4E-BDFF-367FFA4090A4.png"></div></div></section><section><div class="sl-block" data-block-type="text" style="width: 826px; left: 88px; top: 140px; height: auto;" data-block-id="8e7a2b865e35a81ace4f6b97861ff808"><div class="sl-block-content" data-placeholder-tag="h1" style="font-size: 200%; text-align: left; z-index: 10;" data-placeholder-text="Text">
+<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 365.384444444444px; height: 566px; left: 320px; top: 124px;" data-block-id="f14d663cf53b0db802e1861f1a4e4096"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="581" data-natural-height="900" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1477711/F577A2F4-604F-4B4E-BDFF-367FFA4090A4.png"></div></div></section><section><div class="sl-block" data-block-type="text" style="width: 826px; left: 88px; top: 140px; height: auto;" data-block-id="8e7a2b865e35a81ace4f6b97861ff808"><div class="sl-block-content" data-placeholder-tag="h1" style="font-size: 200%; text-align: left; z-index: 11;" data-placeholder-text="Text">
 <h3>
 <span style="font-size:32px"><span style="font-size:48px">不要切换active状态<br>
 不要离开panel</span></span><br>
@@ -263,7 +282,7 @@ for(i = 0; i &lt; _currentUIActions.Count; i ++)
 <div class="sl-block" data-block-type="text" data-block-id="9fff5a9c195cacfac150037dc6a04fe9" style="height: auto; min-width: 30px; min-height: 30px; width: 782px; left: 89px; top: 43px;"><div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text" style="z-index: 12;">
 <h1>复用GameObject的时候</h1>
 </div></div>
-<div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 837.474541751528px; height: 257px; left: 97px; top: 373px;" data-block-id="a8dd9a6f45bcadaa6fe68e743732f38d"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="1600" data-natural-height="491" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1477796/1.png"></div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="17a74dcea527560859aa20c18000bc21"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
+<div class="sl-block" data-block-type="image" data-block-id="721300556e0264a33f6e8b6556d73cb7" style="min-width: 30px; min-height: 30px; width: 944.320099255583px; height: 263px; left: 7px; top: 385px;"><div class="sl-block-content" style="z-index: 13;"><img style="" data-natural-width="1447" data-natural-height="403" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1477893/pasted-from-clipboard.png"></div></div></section><section><div class="sl-block" data-block-type="text" style="width: 800px; left: 79px; top: 50px; height: auto;" data-block-id="17a74dcea527560859aa20c18000bc21"><div class="sl-block-content" data-placeholder-tag="h2" data-placeholder-text="Title Text" style="z-index: 11;">
 <h2>And Next?</h2>
 </div></div>
 <div class="sl-block" data-block-type="image" style="min-width: 30px; min-height: 30px; width: 922px; height: 297.345px; left: 12px; top: 202px;" data-block-id="af85ae9e6d23a82ee1cfe0492da3f279"><div class="sl-block-content" style="z-index: 12;"><img style="" data-natural-width="1600" data-natural-height="516" data-src="https://s3.amazonaws.com/media-p.slid.es/uploads/179039/images/1477804/2.png"></div></div>
