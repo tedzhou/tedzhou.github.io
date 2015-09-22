@@ -283,8 +283,13 @@
 
 <header class="app-header">
     <a href="javascript:void(0);" class="u-globalAudio"> <i class="icon-music"></i>
-        <audio src="music/Unexpectedly.mp3" autoplay="autoplay" loop="loop"></audio>
+        <audio id="musicAudio" src="music/Unexpectedly.mp3" loop="loop"></audio>
     </a>
+    <script>
+        document.addEventListener('touchstart', function(){
+            document.getElementById("musicAudio").play();
+        }, false);
+    </script>
 </header>
 <section class="app-content">
     <section class="page page-no" data-plugin-type="info_link" style="background-image: url(images/bg_no.jpg);">
