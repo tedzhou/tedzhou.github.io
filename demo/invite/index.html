@@ -1,0 +1,512 @@
+
+<!DOCTYPE html>
+<html lang="ch">
+<head>
+
+    <meta charset="utf-8" />
+    <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <meta HTTP-EQUIV="expires" CONTENT="0">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="Expires" content="-1" />
+    <meta http-equiv="pragram" content="no-cache" />
+    <title>执欣之手，与煜携老</title>
+    <script type="text/javascript">
+        // 检查更新离线缓存清单
+        if(window.applicationCache){
+            window.applicationCache.addEventListener('updateready', function(e) {
+                if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+                    applicationCache.swapCache()
+                    window.location.reload();
+                } else {
+                    // Manifest没有改动，nothing to do
+                }
+            }, false);
+
+            // 错误处理
+            window.applicationCache.addEventListener('error', function(e) {
+                // nothing to do
+                return false;
+            }, false);
+        }
+    </script>
+    <script type="text/javascript">
+        {
+            var system = {
+                win: false,
+                mac: false,
+                xll: false
+            };
+            //检测平台
+            var p = navigator.platform;
+            system.win = p.indexOf("Win") == 0;
+            system.mac = p.indexOf("Mac") == 0;
+            system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+            //跳转语句
+            if (system.win || system.mac || system.xll) { //转向电脑端
+//                   ; 
+            }
+        }
+        if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+            var version = parseFloat(RegExp.$1);
+            if(version>2.3){
+                var phoneScale = parseInt(window.screen.width)/640;
+                document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+            }else{
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        }else{
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+        //微信去掉下方刷新栏
+        if(navigator.userAgent.indexOf('MicroMessenger') >= 0){
+            document.addEventListener('WeixinJSBridgeReady', function() {
+                //WeixinJSBridge.call('hideToolbar');
+            });
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="styles/app.min.css?ver=3.1">
+<head>
+<body class="app" data-app-id="">
+<div id="app-loading" class="app-loading">
+    <div class="cycleWrap">
+        <span class="cycle cycle-1"></span>
+        <span class="cycle cycle-2"></span>
+        <span class="cycle cycle-3"></span>
+        <span class="cycle cycle-4"></span>
+    </div>
+    <div class="lineWrap">
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+    </div>
+</div>
+<img class="myflowUpDown11wstar3" src="img/zq/wstar3.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(136px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown10wstar2" src="img/zq/wstar2.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(238px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown9wstar1" src="img/zq/wstar1.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(193px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown8wstar3" src="img/zq/wstar3.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(216px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown7wstar2" src="img/zq/wstar2.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(64px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown6wstar1" src="img/zq/wstar1.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(82px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown5wstar3" src="img/zq/wstar3.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(359px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown4wstar2" src="img/zq/wstar2.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(172px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown3wstar1" src="img/zq/wstar1.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(31px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown2wstar3" src="img/zq/wstar3.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(108px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown1wstar2" src="img/zq/wstar2.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(281px, -72px); width: 60px; height: 60px;">
+<img class="myflowUpDown0wstar1" src="img/zq/wstar1.png" style="z-index: 2147483642; position: absolute; -webkit-transform: translate(8px, -72px); width: 60px; height: 60px;">
+<style type="text/css">
+    @-webkit-keyframes myflowUpDownK0wstar1 {
+        0% {
+            -webkit-transform: translate(8px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(50px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown0wstar1 {
+        -webkit-animation: myflowUpDownK0wstar1 8.545147315366194s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 0s;
+    }
+
+    @-webkit-keyframes myflowUpDownK1wstar2 {
+        0% {
+            -webkit-transform: translate(281px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(62px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown1wstar2 {
+        -webkit-animation: myflowUpDownK1wstar2 5.229381397133693s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 0.6s;
+    }
+
+    @-webkit-keyframes myflowUpDownK2wstar3 {
+        0% {
+            -webkit-transform: translate(108px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(269px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown2wstar3 {
+        -webkit-animation: myflowUpDownK2wstar3 3.7555076787248254s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 1.2s;
+    }
+
+    @-webkit-keyframes myflowUpDownK3wstar1 {
+        0% {
+            -webkit-transform: translate(431px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(486px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown3wstar1 {
+        -webkit-animation: myflowUpDownK3wstar1 7.376763368025422s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 1.8s;
+    }
+
+    @-webkit-keyframes myflowUpDownK4wstar2 {
+        0% {
+            -webkit-transform: translate(172px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(299px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown4wstar2 {
+        -webkit-animation: myflowUpDownK4wstar2 5.481176670175046s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 2.4s;
+    }
+
+    @-webkit-keyframes myflowUpDownK5wstar3 {
+        0% {
+            -webkit-transform: translate(359px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(213px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown5wstar3 {
+        -webkit-animation: myflowUpDownK5wstar3 9.636664107674733s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay:3s;
+    }
+
+    @-webkit-keyframes myflowUpDownK6wstar1 {
+        0% {
+            -webkit-transform: translate(82px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(3px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown6wstar1 {
+        -webkit-animation: myflowUpDownK6wstar1 7.6531787004787475s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 3.6s;
+    }
+
+    @-webkit-keyframes myflowUpDownK7wstar2 {
+        0% {
+            -webkit-transform: translate(64px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(181px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown7wstar2 {
+        -webkit-animation: myflowUpDownK7wstar2 4.620734748663381s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 4.2s;
+    }
+
+    @-webkit-keyframes myflowUpDownK8wstar3 {
+        0% {
+            -webkit-transform: translate(216px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(291px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown8wstar3 {
+        -webkit-animation: myflowUpDownK8wstar3 8.455311183584854s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 4.8s;
+    }
+
+    @-webkit-keyframes myflowUpDownK9wstar1 {
+        0% {
+            -webkit-transform: translate(193px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(334px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown9wstar1 {
+        -webkit-animation: myflowUpDownK9wstar1 9.865449147764593s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 5.4s;
+    }
+
+    @-webkit-keyframes myflowUpDownK10wstar2 {
+        0% {
+            -webkit-transform: translate(238px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(350px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown10wstar2 {
+        -webkit-animation: myflowUpDownK10wstar2 8.638492928352207s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 6s;
+    }
+
+    @-webkit-keyframes myflowUpDownK11wstar3 {
+        0% {
+            -webkit-transform: translate(436px,-72px) rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: translate(465px,815px) rotate(720deg);
+        }
+    }
+
+    .myflowUpDown11wstar3 {
+        -webkit-animation: myflowUpDownK11wstar3 8.57628920301795s infinite;
+        -webkit-animation-timing-function: linear;
+        -webkit-animation-fill-mode: backwards;
+        -webkit-animation-delay: 6.6s;
+    }
+</style>
+
+
+
+<header class="app-header">
+    <a href="javascript:void(0);" class="u-globalAudio"> <i class="icon-music"></i>
+        <audio src="music/Unexpectedly.mp3" autoplay="autoplay" loop="loop"></audio>
+    </a>
+</header>
+<section class="app-content">
+    <section class="page page-no" data-plugin-type="info_link" style="background-image: url(images/bg_no.jpg);">
+        <div class = 'wed2'>
+            <img src="images/mask/wed2.png"/>
+        </div>
+    </section>
+    <section class="page page-link" data-plugin-type="info_link" style="background-image: url(wedding/1.jpg);">
+    <div class="tit_cir cover " id="tit_center">
+        <h1>梁华煜 &amp;  黃海欣</h1>
+        <p>
+            2015-10-07 (
+            星期三
+            )
+        </p>
+    </div>
+</section>		<section class="page page-teletext" data-plugin-type="info_list" style="background-image:url(images/bg2.jpg)">
+    <section class="page-content">
+        <ul class="m-cascadingTeletext" id="mCascadingTeletext">
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/2.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+                <div class="imgText" style="text-align: center;">
+                    <div class="contet_ivitation">
+                        <h4 style="font-size: 32px;text-align: center">爱情宣言</h4>
+                        <hr class="soften">
+                        <div class="EvitationFont" style="text-align: left;font-size: 30px;">爱从眼角出发，抵达鬓角；这微不足道的间距，却需要付出跋涉一生的努力。期待您带着祝福，和我们一起见证这幸福的时刻。</div>
+                        <hr class="soften">
+                    </div>
+
+                </div>
+            </li>
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/3.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/4.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/5.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/6.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/7.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/8.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/9.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/10.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/11.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/12.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/13.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+            <li >
+                <table>
+                    <tr>
+                        <th>
+                            <img  src="wedding/14.jpg"  />
+                        </th>
+                    </tr>
+                </table>
+            </li>
+
+        </ul>
+        <a href="javascript:void(0);" class="u-guidePrev z-move">prev</a>
+        <a href="javascript:void(0);" class="u-guideNext z-move">next</a>
+    </section>
+</section>
+    <section class="page page-link" data-plugin-type="info_link" style="background-image: url(images/bg2.jpg);">
+
+        <section class="page-content">
+            <div class='u-head'>
+                <div class = 'u-head-bg'></div>
+            </div>
+            <div class="u-info">
+                <div class="u-dk clearfix ">
+                    <div class="ii-p nam-p"><div>梁华煜</div><div>黃海欣</div></div>
+                    <div class="ii-p timer-p">
+                        <span class="rows-year minijianxiyuan">2015</span>
+                        <span class="rows-date minijianxiyuan">10月7日</span>
+                    </div>
+                </div>
+                <p class="rows-p minijianxiyuan">新录丰大酒店</p>
+
+                <p class="rows-p rows-p2 minijianxiyuan">广东省湛江市霞山区绿村路26号新录丰大酒店二楼大厅</p>
+            </div>
+        </section>
+    </section>
+
+    <section class="page page-word" style="background-image:url(images/bg5.jpg)">
+    <div class = 'wed'>
+        <img src="images/mask/wed.png"/>
+    </div>
+    <section class="page-content">
+        <a href="http://m.amap.com/navi/?dest=110.39807,21.19172&destName=新录丰大酒店||广东省湛江市霞山区绿村路26号&key=da975a4eb7d6212541f780b4e3176446" class="go_in" style="background-image: url(images/go_zl.png); background-color: rgba(255, 215, 132, 0.701961);"></a>
+    </section>
+    <!--End 留言-->
+</section>
+
+</section>
+<section class="u-note"></section>
+<section class="u-pageLoading">
+    <img src="images/global/load.gif" alt="loading" />
+</section>
+<script type="text/javascript" src="scripts/init.min.js?ver=3.2"></script></body>
+<div class="leave_box" id="leaveContent" data-color="rgb(255, 215, 132)"></div>
+
+</html>
