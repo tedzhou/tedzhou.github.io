@@ -2549,8 +2549,8 @@ to {
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary,.m-words-warn .warn-txt,.m-youkuVideo.z-showVideo .videoBody,.page-link.z-current .m-link,.page-video.z-current .m-btnPlay,.page-form.z-current .m-contactInfo,.page-form.z-current .m-contactUs {
 	display: block
 }[hidden],template,.u-yunlaiMap .baiduMap .BMap_cpyCtrl,.f-hide,.m-words-warn .warn-loading,.m-words-warn .warn-txt .after,.m-words-warn .warn-txt.z-change .before,.m-youkuVideo.z-showVideo .btnPlay {
-	display: none
-}
+	 display: none
+ }
 
 b,strong,optgroup {
 	font-weight: 700
@@ -2596,14 +2596,14 @@ button::-moz-focus-inner,input::-moz-focus-inner,legend {
 }
 
 .m-cascadingTeletext li {
-  padding: 0px;
-  margin: 0px;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  display: none;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	display: none;
 }
 
 .m-cascadingTeletext li:nth-child(1) {
@@ -2625,24 +2625,24 @@ button::-moz-focus-inner,input::-moz-focus-inner,legend {
 	width: 580px;
 	border-radius: 2px;
 	box-shadow: 0 0 13px 0 #b8b8b8;
-	-webkit-transition: all 3s ease-out;
+	-webkit-transition: all .8s ease-out;
 	-webkit-transform: rotateZ(30deg) scale(3) translate(80%,80%);
-	  right: 0px;
+	right: 0px;
 }
 
 .m-cascadingTeletext.z-viewArea li:nth-child(1) img {
 	-webkit-transform: rotateZ(0deg) scale(1) translate(0%,0%);
-	-webkit-transition-delay: 0.5s
+	-webkit-transition-delay: 1s
 }
 
 .m-cascadingTeletext.z-viewArea li:nth-child(2) img {
 	-webkit-transform: rotateZ(1.6deg) scale(1) translate(0%,0%);
-	-webkit-transition-delay: 0.5s
+	-webkit-transition-delay: .5s
 }
 
 .m-cascadingTeletext.z-viewArea li:nth-child(3) img {
 	-webkit-transform: rotateZ(3.2deg) scale(1) translate(0%,0%);
-	-webkit-transition-delay: 0.2s
+	-webkit-transition-delay: 0s
 }
 
 .m-cascadingTeletext li .imgText {
@@ -3696,11 +3696,11 @@ button::-moz-focus-inner,input::-moz-focus-inner,legend {
 	}
 }
 .wed{
-    position: absolute;
-    width:100%;
-    top:206px;
-    left:0;
-   -webkit-animation: cover 1.2s;
+	position: absolute;
+	width:100%;
+	top:206px;
+	left:0;
+	-webkit-animation: cover 1.2s;
 	animation-delay: 0.5s;
 	-webkit-animation-delay: 0.5s;
 	animation-timing-function: ease-in;
@@ -3715,19 +3715,19 @@ button::-moz-focus-inner,input::-moz-focus-inner,legend {
 	left: 0;
 	top: 100px;
 	-webkit-transform:translateX(-200%) scale(.4);
-    -webkit-animation:4.5s ease 0s normal forwards 1 myfirst;
+	-webkit-animation:4.5s ease 0s normal forwards 1 myfirst;
 }
-  @-webkit-keyframes myfirst
+@-webkit-keyframes myfirst
 {
-     from{
-        opacity:0;
-        -webkit-transform:translateY(-50%) scale(0);
-        transform:translateY(-50%) scale(0);
-    }to{
-        opacity:1;
-        -webkit-transform:translateY(5%) scale(1);
-        transform:translateY(5%) scale(1);
-    }
+	from{
+		opacity:0;
+		-webkit-transform:translateY(-50%) scale(0);
+		transform:translateY(-50%) scale(0);
+	}to{
+		 opacity:1;
+		 -webkit-transform:translateY(5%) scale(1);
+		 transform:translateY(5%) scale(1);
+	 }
 }
 #countdown { text-align: center; color: #FFFFFF; line-height: 60px; }
 #countdown span { display: inline-block; width: 68px; height: 52px; color: rgb(255,255,255); font-size: 32px;   line-height: 50px;background: url(/Public/Mob/1/images/time_bg.png) no-repeat center; background-size: cover; font-family: "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft YaHei", Tahoma, SimSun;}
