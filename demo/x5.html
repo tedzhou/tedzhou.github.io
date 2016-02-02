@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Test Dragging</title>
+    <meta name="robots" content="none">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=960, user-scalable=no">
     <title></title>
 </head>
-<body>
-<div id="somebox" style="display: block; width: 100px; height: 100px; background: gainsboro">
+<body style="background: red">
+<div id="somebox" style="position: absolute; width: 100px; height: 100px; background: gainsboro; backface-visibility: hidden;">
 
 </div>
 <script>
@@ -17,7 +21,12 @@
 
     document.body.addEventListener('touchmove', function (e) {
         if(isDragging) {
-            box.style.transform = "translate("+ e.touches[0].clientX+"px,"+  e.touches[0].clientY+"px)";
+//            box.style.left = e.touches[0].clientX+"px";
+//            box.style.top = e.touches[0].clientY+"px";
+
+            box.style.transform = "translate3d("+ e.touches[0].clientX+"px,"+  e.touches[0].clientY+"px, 0)";
+            box.style.webkitTransform = "translate3d("+ e.touches[0].clientX+"px,"+  e.touches[0].clientY+"px, 0)";
+
         }
     });
 
