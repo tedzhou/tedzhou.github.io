@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>BlackJack</title>
-    <meta name="robots" content="none">
-    <meta name="format-detection" content="telephone=no">
-    <!--<meta name="viewport" content="width=960, user-scalable=no">-->
-    <meta name="viewport" content="width=960, initial-scale=.3, maximum-scale=.3" />
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
-<div style="background: red; width: 320px; height: 100px">
-文字1 -changed-0.3
-width=960, initial-scale=.3, maximum-scale=.3
+<div id="somebox" style="display: block; width: 100px; height: 100px; background: gainsboro">
+
 </div>
-<p>文字2</p>
-<input type="text" value="文字3"/>
+<script>
+    var box = document.getElementById('somebox');
+    var isDragging = false;
+    box.addEventListener('touchstart',  function (e) {
+        isDragging = true;
+    });
+
+    document.body.addEventListener('touchmove', function (e) {
+        if(isDragging) {
+            box.style.transform = "translate("+ e.touches[0].clientX+"px,"+  e.touches[0].clientY+"px)";
+        }
+    });
+
+    document.body.addEventListener('touchcancel', function (e) {
+        isDragging = false;
+    });
+
+
+</script>
 </body>
 </html>
